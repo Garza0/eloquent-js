@@ -73,14 +73,115 @@
 
 
 //==Task 3
-function countChar(str, char) {
-  let counter = 0
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === char) counter++
+// function countChar(str, char) {
+//   let counter = 0
+//   for (let i = 0; i < str.length; i++) {
+//     if (str[i] === char) counter++
+//   }
+//   return counter
+// }
+
+
+// console.log(countChar("BBC", 'B'))
+// console.log(countChar("kakkerlak", "k"))
+
+
+// =======CHAPTER 4=========
+//==Task 1 
+
+// function range(start, end, step = 1) {
+//   let array = []
+//   if (end > start) {
+//     for (let i = start; i <= end; i += step) {
+//       array.push(i)
+//     }
+//   } else {
+//     for (let i = start; i >= end; i += step) {
+//       array.push(i)
+//     }
+//   }
+//   return array
+// }
+
+
+// function sum(a) {
+//   let sum = 0
+//   for (let element of a) {
+//     sum += element
+//   }
+//   return sum
+// }
+
+// console.log(range(1, 10));
+// console.log(range(5, 2, -1));
+// console.log(sum(range(1, 10)));
+
+//==Task 2
+// function reverseArray(array) {
+//   let arr = []
+//   for (let i = 0; i < array.length; i++) {
+//     arr.unshift(array[i])
+//   }
+//   return arr
+// }
+
+// console.log(reverseArray(["A", "B", "C"]))
+
+// function reverseArrayInPlace(arrayValue) {
+//   if (arrayValue.length % 2) {
+//     let halfLength = Math.floor(arrayValue.length / 2)
+//     let saverStart
+//     let saverEnd
+//     let iterate = 1
+//     for (i = 0; i < halfLength; i++) {
+//       saverStart = arrayValue[arrayValue.length - iterate]
+//       saverEnd = arrayValue[iterate - 1]
+//       arrayValue[i] = saverStart
+//       arrayValue[arrayValue.length - iterate] = saverEnd
+//       iterate++
+//     }
+//   }
+//   return arrayValue
+// }
+
+// let arrayValue = [1, 2, 3, 4, 5, 6, 7];
+// reverseArrayInPlace(arrayValue);
+// console.log(arrayValue);
+
+
+
+//==Task 3
+
+function arrayToList(array) {
+  let list = null
+  for (let i = array.length - 1; i >= 0; i--) {
+    list = { value: array[i], rest: list }
   }
-  return counter
+  return list
+}
+
+function listToArray(list) {
+  let arr = []
+  for (let i = list; i; i = i.rest) {
+    arr.push(i.value)
+  }
+  return arr
 }
 
 
-console.log(countChar("BBC", 'B'))
-console.log(countChar("kakkerlak", "k"))
+function prepend(el, list) {
+  let newList = { value: el, rest: list }
+  return newList
+}
+
+function nth(list, num) {
+  let i = 0
+  if (num == i) return list.value
+  else i++
+  return nth(list.rest, num - 1)
+}
+
+console.log(arrayToList([10, 20, 30]))
+console.log(listToArray(arrayToList([10, 20, 30])))
+console.log(prepend(10, prepend(20, null)))
+console.log(nth(arrayToList([10, 20, 30]), 1))
