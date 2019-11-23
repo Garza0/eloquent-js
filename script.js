@@ -152,36 +152,68 @@
 
 //==Task 3
 
-function arrayToList(array) {
-  let list = null
-  for (let i = array.length - 1; i >= 0; i--) {
-    list = { value: array[i], rest: list }
+// function arrayToList(array) {
+//   let list = null
+//   for (let i = array.length - 1; i >= 0; i--) {
+//     list = { value: array[i], rest: list }
+//   }
+//   return list
+// }
+
+// function listToArray(list) {
+//   let arr = []
+//   for (let i = list; i; i = i.rest) {
+//     arr.push(i.value)
+//   }
+//   return arr
+// }
+
+
+// function prepend(el, list) {
+//   let newList = { value: el, rest: list }
+//   return newList
+// }
+
+// function nth(list, num) {
+//   let i = 0
+//   if (num == i) return list.value
+//   else i++
+//   return nth(list.rest, num - 1)
+// }
+
+// console.log(arrayToList([10, 20, 30]))
+// console.log(listToArray(arrayToList([10, 20, 30])))
+// console.log(prepend(10, prepend(20, null)))
+// console.log(nth(arrayToList([10, 20, 30]), 1))
+
+//==Task 4
+
+
+
+function deepEqual(obj1, obj2) {
+  if (obj1 === obj2) return true;
+
+
+  if (typeof obj1 != 'object' || obj1 == null || typeof obj2 != 'object' || obj2 == null)
+    return false
+
+  let propsInA = 0, propsInB = 0
+  for (let prop in obj1)
+    propsInA += 1
+  for (let prop in obj2) {
+    propsInB += 1;
+    if (!(prop in obj1) || !deepEqual(obj1[prop], obj2[prop]))
+      return false;
   }
-  return list
-}
-
-function listToArray(list) {
-  let arr = []
-  for (let i = list; i; i = i.rest) {
-    arr.push(i.value)
-  }
-  return arr
+  return propsInA == propsInB;
 }
 
 
-function prepend(el, list) {
-  let newList = { value: el, rest: list }
-  return newList
-}
 
-function nth(list, num) {
-  let i = 0
-  if (num == i) return list.value
-  else i++
-  return nth(list.rest, num - 1)
-}
-
-console.log(arrayToList([10, 20, 30]))
-console.log(listToArray(arrayToList([10, 20, 30])))
-console.log(prepend(10, prepend(20, null)))
-console.log(nth(arrayToList([10, 20, 30]), 1))
+let obj = { here: { is: "an" }, object: 2 };
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, { here: 1, object: 2 }));
+// → false
+console.log(deepEqual(obj, { here: { is: "an" }, object: 2 }));
+// → true
