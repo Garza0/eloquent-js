@@ -190,30 +190,72 @@
 
 
 
-function deepEqual(obj1, obj2) {
-  if (obj1 === obj2) return true;
+// function deepEqual(obj1, obj2) {
+//   if (obj1 === obj2) return true;
 
 
-  if (typeof obj1 != 'object' || obj1 == null || typeof obj2 != 'object' || obj2 == null)
-    return false
+//   if (typeof obj1 != 'object' || obj1 == null || typeof obj2 != 'object' || obj2 == null)
+//     return false
 
-  let propsInA = 0, propsInB = 0
-  for (let prop in obj1)
-    propsInA += 1
-  for (let prop in obj2) {
-    propsInB += 1;
-    if (!(prop in obj1) || !deepEqual(obj1[prop], obj2[prop]))
-      return false;
-  }
-  return propsInA == propsInB;
-}
+//   let propsInA = 0, propsInB = 0
+//   for (let prop in obj1)
+//     propsInA += 1
+//   for (let prop in obj2) {
+//     propsInB += 1;
+//     if (!(prop in obj1) || !deepEqual(obj1[prop], obj2[prop]))
+//       return false;
+//   }
+//   return propsInA == propsInB
+// }
 
 
+// let obj = { here: { is: "an" }, object: 2 }
+// console.log(deepEqual(obj, obj))
+// console.log(deepEqual(obj, { here: 1, object: 2 }))
+// console.log(deepEqual(obj, { here: { is: "an" }, object: 2 }))
 
-let obj = { here: { is: "an" }, object: 2 };
-console.log(deepEqual(obj, obj));
-// → true
-console.log(deepEqual(obj, { here: 1, object: 2 }));
-// → false
-console.log(deepEqual(obj, { here: { is: "an" }, object: 2 }));
-// → true
+
+// =======CHAPTER 5=========
+//==Task 1 
+
+// let arrays = [[1, 2, 3], [4, 5], [6]]
+// console.log(arrays.reduce((a, b) => a.concat(b)))
+
+//==Task 2
+//=var 1
+// function loop(value, test, update, body) {
+//   for (let i = value; test(i); i = update(i)) body(i)
+// }
+
+
+//=var 2
+// function loop(value, test, update, body) {
+//   if (!test(value)) return
+//   body(value)
+//   loop(update(value), test, update, body)
+// }
+
+// loop(3, n => n > 0, n => n - 1, console.log)
+
+// ==Task 3
+
+//=var 1
+// function every(array, test) {
+//   for (let element of array) {
+//     if (!test(element)) return false
+//   }
+//   return true
+// }
+
+//=var 2
+// function every(array, test) {
+//   return !array.some(n => !test(n))
+// }
+
+// console.log(every([1, 3, 5], n => n < 10));
+// console.log(every([2, 4, 16], n => n < 10));
+// console.log(every([], n => n < 10));
+
+// ==Task 4 ??? in sandbox
+
+
