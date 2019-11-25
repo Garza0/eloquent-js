@@ -256,6 +256,65 @@
 // console.log(every([2, 4, 16], n => n < 10));
 // console.log(every([], n => n < 10));
 
-// ==Task 4 ??? in sandbox
+// ==Task 4 ??? sandbox
+
+// =======CHAPTER 5=========
+//==Task 1 
+
+// class Vec {
+//   constructor(x, y) {
+//     this.x = x
+//     this.y = y
+//   }
+//   plus(other) {
+//     return new Vec(other.x + this.x, other.y + this.y)
+//   }
+//   minus(other) {
+//     return new Vec(this.x - other.x, this.y - other.y)
+//   }
+
+//   get length() {
+//     return Math.sqrt(this.x * this.x + this.y * this.y)
+//   }
+// }
 
 
+// console.log(new Vec(1, 2).plus(new Vec(2, 3)));
+// console.log(new Vec(1, 2).minus(new Vec(2, 3)));
+// console.log(new Vec(3, 4).length)
+
+class Group {
+  constructor() {
+    this.members = []
+  }
+  add(value) {
+    if (!this.has(value)) {
+      this.members.push(value)
+    }
+  }
+
+  delete(value) { }
+
+
+  has(value) {
+    return this.members.includes(value)
+  }
+
+  static from(arg) {
+    let group = new Group
+    for (let value of arg) {
+      group.add(value)
+    }
+    return group
+  }
+}
+
+let group = Group.from([10, 20]);
+console.log(group.has(10));
+// → true
+console.log(group.has(30));
+// → false
+group.add(10);
+// group.delete(10);
+console.log(group.has(10));
+// → false
